@@ -1,15 +1,25 @@
 function calcAverageCalories(days) {
-    let totalCalories = 0;
-    const numberOfDays = days.length;  
-    for (const day of days) {
-      if (day.calories && typeof day.calories === "number") {
-        totalCalories += day.calories;
-      } 
-    }
-    const averageCalories = totalCalories / numberOfDays;
-    return averageCalories;
+  if (days.length === 0) {
+    return 0; 
   }
-  
+
+  let totalCalories = 0;
+  let numberOfDaysWithCalories = 0; 
+
+  for (const day of days) {
+    if (day.calories && typeof day.calories === "number") {
+      totalCalories += day.calories;
+      numberOfDaysWithCalories++; 
+    }
+  }
+
+  if (numberOfDaysWithCalories === 0) {
+    return 0;
+  }
+
+  const averageCalories = totalCalories / numberOfDaysWithCalories;
+  return averageCalories;
+}
 
 console.log(
     calcAverageCalories([
